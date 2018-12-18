@@ -11,8 +11,4 @@ cache:
 script:
    - yarn build 
 after_success:
-  - find ./public -type f
-    -exec curl --ftp-create-dirs
-      -T {}
-      -u ${PRODUCTION_SERVER_HOST}:${PRODUCTION_SERVER_PASSWORD}
-      ftp://web.less-harm.com/public
+  - find ./public -type f -exec curl --ftp-create-dirs -T {} -u ${PRODUCTION_SERVER_HOST}:${PRODUCTION_SERVER_PASSWORD} ftp://web.less-harm.com/public
