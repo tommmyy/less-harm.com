@@ -7,9 +7,15 @@ const options = {
 	user: PRODUCTION_SERVER_HOST,
 	password: PRODUCTION_SERVER_PASSWORD,
 	parallel: 10,
+	log: console.log,
 };
 const connection = ftp.create(options);
 console.log('Uploading to FTP');
 console.log(options);
 
-fs.src(['./public/**'], { buffer: false }).pipe(connection.dest('/'));
+fs.src(['./public/**'], { buffer: false })
+	.pipe(connection.dest('/'))
+	.on('end', function() {
+		console.log("We're done!");
+		process.exit(0);
+	});
