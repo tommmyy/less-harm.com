@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tommmyy/less-harm.com.svg?branch=master)](https://travis-ci.com/tommmyy/less-harm.com)
+
 # Gatsby v2 WordPress Starter
 
 This starter is forked from the
