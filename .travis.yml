@@ -1,0 +1,18 @@
+language: node_js
+node_js: # uses nodejs version defined in `.nvmrc`
+sudo: false
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+cache:
+  yarn: true
+  directories:
+    - node_modules
+script:
+  - yarn build 
+after_success:
+- find ./public -type f
+- curl --ftp-create-dirs
+	-T {}
+	-u ${PRODUCTION_SERVER_HOST}:${PRODUCTION_SERVER_PASSWORD}
+       ftp://web.less-harm.com/public
