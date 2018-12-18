@@ -16,7 +16,7 @@ const config = {
 	include: ['*', '**/*'], // this would upload everything except dot files
 	exclude: [], // e.g. exclude sourcemaps - ** exclude: [] if nothing to exclude **
 	deleteRemote: true, // delete existing files at destination before uploading
-	forcePasv: true, // Passive mode is forced (EPSV command is not sent)
+	forcePasv: false, // Passive mode is forced (EPSV command is not sent)
 };
 ftpDeploy.on('uploading', function(data) {
 	console.log('uploading', data);
