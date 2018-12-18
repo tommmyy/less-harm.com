@@ -8,27 +8,31 @@ const config = {
 	host: PRODUCTION_SERVER_HOST,
 	port: 21,
 	localRoot: `${__dirname}/public`,
-	remoteRoot: '/public/',
+	remoteRoot: '/',
 	include: ['*', '**/*'], // this would upload everything except dot files
 	exclude: [], // e.g. exclude sourcemaps - ** exclude: [] if nothing to exclude **
 	deleteRemote: true, // delete existing files at destination before uploading
 	forcePasv: true, // Passive mode is forced (EPSV command is not sent)
 };
+ftpDeploy.on('uploading', function(data) {
+	console.log('uploading', data);
+});
+ftpDeploy.on('uploaded', function(data) {
+	console.log('uploaded', data); // same data as uploading event
+});
+ftpDeploy.on('log', function(data) {
+	console.log('log', data); // same data as uploading event
+});
+ftpDeploy.on('upload-error', function(data) {
+	console.log(data.err); // data will also include filename, relativePath, and other goodies
+});
 
 // use with promises
 ftpDeploy
 	.deploy(config)
-	.then(() => 'finished')
+	.then(() => console.log('finished'))
 	.then(() => process.exit(0))
 	.catch(err => {
 		console.log(err);
 		process.exit(0);
 	});
-
-// use with callback
-ftpDeploy.deploy(config, function(err) {
-	if (err) console.log(err);
-	else console.log('finished');
-
-	process.exit(0);
-});
