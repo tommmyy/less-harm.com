@@ -12,7 +12,7 @@ script:
    - yarn build 
 after_success:
   - find ./public -type f
-  - curl --ftp-create-dirs
-    -T {}
-    -u ${PRODUCTION_SERVER_HOST}:${PRODUCTION_SERVER_PASSWORD}
-    ftp://web.less-harm.com/public
+    -exec curl --ftp-create-dirs
+      -T {}
+      -u ${PRODUCTION_SERVER_HOST}:${PRODUCTION_SERVER_PASSWORD}
+      ftp://web.less-harm.com/public
