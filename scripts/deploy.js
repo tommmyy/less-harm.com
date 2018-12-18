@@ -6,6 +6,7 @@ const options = {
 	host: PRODUCTION_SERVER_HOST,
 	user: PRODUCTION_SERVER_HOST,
 	password: PRODUCTION_SERVER_PASSWORD,
+	reload: true,
 	log: console.log,
 	debug: console.log,
 };
