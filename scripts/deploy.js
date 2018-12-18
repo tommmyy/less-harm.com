@@ -6,14 +6,14 @@ const options = {
 	host: PRODUCTION_SERVER_HOST,
 	user: PRODUCTION_SERVER_HOST,
 	password: PRODUCTION_SERVER_PASSWORD,
-	parallel: 10,
 	log: console.log,
+	debug: console.log,
 };
 const connection = ftp.create(options);
 console.log('Uploading to FTP');
 console.log(options);
 
-fs.src(['./public/**'], { buffer: false })
+fs.src(['./public/**'], { buffer: true, dot: true })
 	.pipe(connection.dest('/'))
 	.on('end', function() {
 		console.log("We're done!");
