@@ -11,4 +11,4 @@ cache:
 script:
    - yarn build 
 after_success:
-  - HOST=${PRODUCTION_SERVER_HOST} PWD=${PRODUCTION_SERVER_PASSWORD} yarn deploy
+  - yarn deploy
