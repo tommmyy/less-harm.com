@@ -1,4 +1,5 @@
 const FtpDeploy = require('ftp-deploy');
+const path = require('path');
 
 const ftpDeploy = new FtpDeploy();
 const { PRODUCTION_SERVER_HOST, PRODUCTION_SERVER_PASSWORD } = process.env;
@@ -7,7 +8,7 @@ const config = {
 	password: PRODUCTION_SERVER_PASSWORD,
 	host: PRODUCTION_SERVER_HOST,
 	port: 21,
-	localRoot: `${__dirname}/public`,
+	localRoot: path.resolve(__dirname, '..', 'public'),
 	remoteRoot: '/',
 	include: ['*', '**/*'], // this would upload everything except dot files
 	exclude: [], // e.g. exclude sourcemaps - ** exclude: [] if nothing to exclude **
@@ -34,5 +35,5 @@ ftpDeploy
 	.then(() => process.exit(0))
 	.catch(err => {
 		console.log(err);
-		process.exit(0);
+		process.exit(1);
 	});
