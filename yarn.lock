@@ -6379,10 +6379,10 @@ fswatcher-child@^1.0.3:
   dependencies:
     chokidar "^2.0.3"
 
-ftp-deploy@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/ftp-deploy/-/ftp-deploy-2.2.1.tgz#dbf7c235d5ccdf1cfe6be6930136d9daecd827f5"
-  integrity sha512-X/g9OJsNuOXBPQYxqoek2/y0qE7Zn/QeGL+4GVUWr5ovrlx51EZ1kPhC+EYiN/sKx3M10vIbpmw6b6kwR6GbDA==
+ftp-deploy@2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/ftp-deploy/-/ftp-deploy-2.1.4.tgz#84afb3ccf429412d3d0943fe101c9bb5a60488d0"
+  integrity sha512-JV83rXPgcFU0N2Ot6nnNjf+HLVdFf5dvld0xYpU/IjV6WMe8IP68fPo6TKHynG07DrPusf5+2QkRDwYAv9j8gQ==
   dependencies:
     bluebird "^3.5.1"
     minimatch "3.0.4"
