@@ -19,7 +19,7 @@ async function example() {
 			user: 'web.less-harm.com',
 			password: 'kokot',
 		});
-		await client.ensureDir('/');
+		await client.ensureDir('/public');
 		await client.clearWorkingDir();
 		await client.uploadDir(path.resolve(__dirname, '..', 'public'));
 	} catch (err) {
