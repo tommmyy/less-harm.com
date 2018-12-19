@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  "8"
 sudo: true
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -10,6 +9,6 @@ cache:
   directories:
      - node_modules
 script:
-   - yarn build 
+  - yarn build 
 after_success:
   - yarn deploy
