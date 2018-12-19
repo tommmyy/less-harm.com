@@ -1,5 +1,6 @@
 const ftp = require('basic-ftp');
 const fs = require('fs');
+const path = require('path');
 
 example();
 
@@ -12,9 +13,9 @@ async function example() {
 			user: 'web.less-harm.com',
 			password: 'kokot',
 		});
-		console.log(await client.list());
-
-		await client.upload(fs.createReadStream('README.md'), 'README.md');
+		await client.ensureDir('/');
+		await client.clearWorkingDir();
+		await client.uploadDir(path.resolve(__dirname, '..', 'public'));
 	} catch (err) {
 		console.log(err);
 		process.exit(1);
