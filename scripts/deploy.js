@@ -1,9 +1,8 @@
 const ftp = require('basic-ftp');
 const path = require('path');
 
-deploy();
-
 const { PRODUCTION_SERVER_HOST, PRODUCTION_SERVER_PASSWORD } = process.env;
+deploy();
 
 async function deploy() {
 	const client = new ftp.Client(0);
