@@ -12,7 +12,7 @@ const config = {
 	host: PRODUCTION_SERVER_HOST,
 	port: 21,
 	localRoot: path.resolve(__dirname, '..', 'public'),
-	remoteRoot: '/',
+	remoteRoot: '/public',
 	include: ['*', '**/*'], // this would upload everything except dot files
 	deleteRemote: true, // delete existing files at destination before uploading
 	forcePasv: true, // Passive mode is forced (EPSV command is not sent)
