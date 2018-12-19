@@ -2816,6 +2816,11 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+basic-ftp@^2.17.0:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-2.17.0.tgz#3c99199d2ec29d7626aec519bc850d7862915681"
+  integrity sha512-mRLnZr2NE7ejWshg+wYQiaVqX4qBAXbBV3rOaY36DQazHXfB2x4w+apLrDx5obL4+zz2byMPUUwEa32/O3NhDA==
+
 batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
