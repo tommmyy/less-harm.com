@@ -6,6 +6,12 @@ example();
 
 async function example() {
 	const client = new ftp.Client(0);
+	client.trackProgress(info => {
+		console.log('File', info.name);
+		console.log('Type', info.type);
+		console.log('Transferred', info.bytes);
+		console.log('Transferred Overall', info.bytesOverall);
+	});
 	client.ftp.verbose = true;
 	try {
 		await client.access({
