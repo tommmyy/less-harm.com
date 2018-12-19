@@ -1,41 +1,32 @@
-const FtpDeploy = require('ftp-deploy');
+const ftp = require('basic-ftp');
 const path = require('path');
 
-const ftpDeploy = new FtpDeploy();
-const {
-	PRODUCTION_SERVER_HOST = 'web.less-harm.com',
-	PRODUCTION_SERVER_PASSWORD = 'kokot',
-} = {}; // process.env;
-const config = {
-	user: PRODUCTION_SERVER_HOST,
-	password: PRODUCTION_SERVER_PASSWORD,
-	host: PRODUCTION_SERVER_HOST,
-	port: 21,
-	localRoot: path.resolve(__dirname, '..', 'public'),
-	remoteRoot: '/public',
-	include: ['*', '**/*'], // this would upload everything except dot files
-	deleteRemote: true, // delete existing files at destination before uploading
-	forcePasv: true, // Passive mode is forced (EPSV command is not sent)
-};
-ftpDeploy.on('uploading', function(data) {
-	console.log('uploading', data);
-});
-ftpDeploy.on('uploaded', function(data) {
-	console.log('uploaded', data); // same data as uploading event
-});
-ftpDeploy.on('log', function(data) {
-	console.log('log', data); // same data as uploading event
-});
-ftpDeploy.on('upload-error', function(data) {
-	console.log(data.err); // data will also include filename, relativePath, and other goodies
-});
+deploy();
 
-// use with promises
-ftpDeploy
-	.deploy(config)
-	.then(() => console.log('finished'))
-	.then(() => process.exit(0))
-	.catch(err => {
+const { PRODUCTION_SERVER_HOST, PRODUCTION_SERVER_PASSWORD } = process.env;
+
+async function deploy() {
+	const client = new ftp.Client(0);
+	client.trackProgress(info => {
+		console.log('File', info.name);
+		console.log('Type', info.type);
+		console.log('Transferred', info.bytes);
+		console.log('Transferred Overall', info.bytesOverall);
+	});
+	client.ftp.verbose = true;
+	try {
+		await client.access({
+			host: PRODUCTION_SERVER_HOST,
+			user: PRODUCTION_SERVER_HOST,
+			password: PRODUCTION_SERVER_PASSWORD,
+		});
+		await client.ensureDir('/');
+		await client.clearWorkingDir();
+		await client.uploadDir(path.resolve(__dirname, '..', 'public'));
+	} catch (err) {
 		console.log(err);
 		process.exit(1);
-	});
+	}
+	client.close();
+	process.exit(0);
+}

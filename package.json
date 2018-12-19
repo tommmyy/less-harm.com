@@ -35,7 +35,7 @@
     "build": "yarn clean && gatsby build",
     "develop": "yarn clean && gatsby develop",
     "serve": "gatsby serve",
-    "deploy": "node ./scripts/deploy1",
+    "deploy": "node ./scripts/deploy",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\""
   },
   "devDependencies": {
