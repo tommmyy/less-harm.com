@@ -28,6 +28,8 @@ const CatList = props => (
 		{...props}
 		fontSize="0.8em"
 		color="primary"
+		m={0}
+		mb={0}
 		css={{
 			'& a': {
 				borderColor: 'transparent',

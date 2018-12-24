@@ -10,9 +10,9 @@ const Category = props => {
 	const { edges: posts, totalCount } = data.allWordpressPost;
 	const { title: siteTitle } = data.site.siteMetadata;
 	const { name: category } = pageContext;
-	const title = `${totalCount} post${
-		totalCount === 1 ? '' : 's'
-	} in the “${category}” category`;
+	const title = `${totalCount} ${
+		totalCount === 1 ? 'příspěvek' : 'příspěvky'
+	} v kategorie“${category}”`;
 
 	return (
 		<Layout>

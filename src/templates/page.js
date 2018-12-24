@@ -7,7 +7,7 @@ export const PageTemplate = ({ title, content }) => {
 	return (
 		<Section>
 			<Title>{title}</Title>
-			<HTMLContent dangerouslySetInnerHTML={{ __html: content }} />
+			<HTMLContent content={content} />
 		</Section>
 	);
 };

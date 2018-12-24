@@ -7438,7 +7438,7 @@ html-comment-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
   integrity sha1-ZouTd26q5V696POtRkswekljYl4=
 
-html-entities@^1.2.0:
+html-entities@^1.2.0, html-entities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
   integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
@@ -7481,6 +7481,14 @@ htmlparser2@~3.3.0:
     domhandler "2.1"
     domutils "1.1"
     readable-stream "1.0"
+
+htmr@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/htmr/-/htmr-0.7.0.tgz#ddaf465a27d88582963f4b35495b0153001a51ff"
+  integrity sha512-K3Hzymg6VOyHPdNQIG/wnrZ1LfDSLOl3Zk1YD2W7InDFDxK95AfPF69mnzfnpEIPucfM/LJuNhdawMV6OBQ/oQ==
+  dependencies:
+    html-entities "^1.2.1"
+    posthtml-parser "^0.4.0"
 
 http-deceiver@^1.2.7:
   version "1.2.7"
