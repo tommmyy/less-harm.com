@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import {
 	Title,
 	Layout,
@@ -10,7 +11,10 @@ import {
 	HTMLContent,
 	Meta,
 	Box,
+	Heading3,
+	Link,
 } from '../components';
+import { getFluid } from '../utils/getFluid';
 
 export const BlogPostTemplate = ({
 	content,
@@ -19,16 +23,21 @@ export const BlogPostTemplate = ({
 	title,
 	date,
 	author,
+	featuredMedia,
 }) => {
+	console.log(featuredMedia);
 	return (
 		<Section>
 			<Title>{title}</Title>
+			{featuredMedia && (
+				<Img fluid={getFluid({ featured_media: featuredMedia })} />
+			)}
 			<HTMLContent content={content} />
+			<Meta>{date}</Meta>
 			<Box>
-				<Meta>{date}</Meta>
 				{categories && categories.length ? (
 					<div>
-						<h4>Categories</h4>
+						<Heading3>Categories</Heading3>
 						<ul className="taglist">
 							{categories.map(category => (
 								<li key={`${category.slug}cat`}>
@@ -42,7 +51,7 @@ export const BlogPostTemplate = ({
 				) : null}
 				{tags && tags.length ? (
 					<div>
-						<h4>Tags</h4>
+						<Heading3>Tags</Heading3>
 						<ul>
 							{tags.map(tag => (
 								<li key={`${tag.slug}tag`}>
@@ -75,6 +84,7 @@ const BlogPost = ({ data }) => {
 				title={post.title}
 				date={post.date}
 				author={post.author}
+				featuredMedia={post.featured_media}
 			/>
 		</Layout>
 	);
@@ -114,6 +124,15 @@ export const pageQuery = graphql`
 			author {
 				name
 				slug
+			}
+			featured_media {
+				localFile {
+					childImageSharp {
+						fluid(maxWidth: 900) {
+							...GatsbyImageSharpFluid
+						}
+					}
+				}
 			}
 		}
 	}

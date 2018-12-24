@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { Layout, Pagination } from '../components';
 import PostList from '../components/PostList';
+import { Layout, Flex, Pagination } from '../components';
+
+const Hero = Flex;
+Hero.defaultProps = {
+	mb: 0,
+};
 
 export default class IndexPage extends React.Component {
 	render() {
@@ -10,7 +15,7 @@ export default class IndexPage extends React.Component {
 		const { edges: posts } = data.allWordpressPost;
 
 		return (
-			<Layout>
+			<Layout hero={<Hero />}>
 				<PostList posts={posts} title="Poslední příspěvky" />
 				<Pagination pageContext={pageContext} pathPrefix="/" />
 			</Layout>

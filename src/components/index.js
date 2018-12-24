@@ -20,6 +20,7 @@ export { Flex };
 export { default as Content } from './Content';
 export { default as Pagination } from './Pagination';
 export { default as Testimonials } from './Testimonials';
+
 export const Box = styled(RebassBox)`
 	${maxWidth};
 `;
@@ -73,10 +74,11 @@ const Sheet = createGlobalStyle`
 	}
 `;
 
-export const Layout = ({ children }) => (
+export const Layout = ({ hero, children }) => (
 	<ThemeProvider theme={theme}>
 		<Box>
 			<Navbar px={[3, 3, 'auto']} />
+			{hero}
 			<Box maxWidth={900} pt="60px" mx={[3, 3, 'auto']}>
 				<Sheet />
 				<Helmet title="Less Harm" />

@@ -1,9 +1,10 @@
 import React from 'react';
-import { path, map } from 'ramda';
+import { map } from 'ramda';
 import { isNotEmpty } from 'ramda-extension';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { getFluid } from '../utils/getFluid';
 
 import {
 	Feed,
@@ -15,13 +16,6 @@ import {
 	Excerpt,
 	Meta,
 } from '../components';
-
-const getFluid = path([
-	'featured_media',
-	'localFile',
-	'childImageSharp',
-	'fluid',
-]);
 
 const CatList = props => (
 	<Text
