@@ -26,6 +26,7 @@ async function deploy() {
 		console.log(err);
 		process.exit(1);
 	}
+
 	client.close();
 	process.exit(0);
 }

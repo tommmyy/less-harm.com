@@ -1,59 +1,49 @@
-import React from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
+import logo from '../img/logo.svg';
+import { Flex, Box, Fixed, Link } from './';
 
-const Navbar = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        allWordpressPage(sort: { fields: wordpress_id }, limit: 5) {
-          edges {
-            node {
-              title
-              slug
-            }
-          }
-        }
-      }
-    `}
-    render={data => (
-      <nav className="navbar is-transparent">
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item">
-              <figure className="image">
-                <img src={logo} alt="Kaldi" style={{ width: '88px' }} />
-              </figure>
-            </Link>
-          </div>
-          <div className="navbar-start">
-            {data.allWordpressPage.edges.map(edge => (
-              <Link
-                className="navbar-item"
-                to={edge.node.slug}
-                key={edge.node.slug}
-              >
-                {edge.node.title}
-              </Link>
-            ))}
-          </div>
-          <div className="navbar-end">
-            <a
-              className="navbar-item"
-              href="https://github.com/GatsbyCentral/gatsby-starter-wordpress"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">
-                <img src={github} alt="Github" />
-              </span>
-            </a>
-          </div>
-        </div>
-      </nav>
-    )}
-  />
-)
+const Nav = Flex;
+Nav.defaultProps = {
+	...Flex.defaultProps,
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	bg: 'lemon',
+};
 
-export default Navbar
+const Navbar = props => (
+	<StaticQuery
+		query={graphql`
+			query {
+				allWordpressPage(sort: { fields: wordpress_id }, limit: 5) {
+					edges {
+						node {
+							title
+							slug
+						}
+					}
+				}
+			}
+		`}
+		render={data => (
+			<Fixed width="100%" zIndex="1">
+				<Nav css={{ height: '60px' }} {...props}>
+					<Link to="/" disableUnderline m={0}>
+						<img
+							src={logo}
+							alt=""
+							style={{ margin: 0, padding: 0, width: '88px' }}
+						/>
+					</Link>
+					{data.allWordpressPage.edges.map(edge => (
+						<Link disableUnderline to={edge.node.slug} key={edge.node.slug}>
+							{edge.node.title}
+						</Link>
+					))}
+				</Nav>
+			</Fixed>
+		)}
+	/>
+);
+
+export default Navbar;
