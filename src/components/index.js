@@ -64,6 +64,13 @@ export const theme = {
 			boxShadow: 'inset 0 0 0 1px',
 		},
 	},
+	cards: {
+		outline: {
+			color: blue,
+			backgroundColor: 'transparent',
+			boxShadow: 'inset 0 0 0 1px',
+		},
+	},
 };
 
 const Sheet = createGlobalStyle`
@@ -79,7 +86,7 @@ export const Layout = ({ hero, children }) => (
 		<Box>
 			<Navbar px={[3, 3, 'auto']} />
 			{hero}
-			<Box maxWidth={900} pt="60px" mx={[3, 3, 'auto']}>
+			<Box maxWidth={640} pt="60px" mx={[3, 3, 'auto']}>
 				<Sheet />
 				<Helmet title="Less Harm" />
 				<div>{children}</div>
@@ -102,7 +109,7 @@ export const Text = styled(RebassText)``;
 Text.defaultProps = {
 	fontSize: [1],
 	fontFamily: 'sans2',
-	letterSpacing: ['0.1em'],
+	letterSpacing: ['0.05em'],
 	lineHeight: ['1.5rem', '2rem'],
 	textAlign: 'justify',
 	mb: 0,
@@ -114,7 +121,7 @@ export const Heading = props => (
 		fontSize={[2, 3]}
 		fontFamily="sans"
 		fontWeight="normal"
-		letterSpacing={['0.3em']}
+		letterSpacing={['0.1em']}
 		css={{
 			textTransform: 'uppercase',
 			'& a': {
@@ -131,7 +138,7 @@ export const Heading2 = props => (
 		fontSize={[1, 2]}
 		fontFamily="sans"
 		fontWeight="normal"
-		letterSpacing={['0.3em']}
+		letterSpacing={['0.1em']}
 		mb={1}
 		css={{
 			textTransform: 'uppercase',
@@ -270,4 +277,16 @@ export const Fixed = ({ zIndex, ...rest }) => (
 			zIndex,
 		}}
 	/>
+);
+
+export const Tags = props => <Flex my={2} {...props} />;
+export const Tag = ({ children, ...rest }) => (
+	<Box
+		mr={2} my={0} p={0}
+		{...rest}
+	>
+		<Card variant="outline" p={0} m={0}>
+			<Text px={2}>{children}</Text>
+		</Card>
+	</Box>
 );

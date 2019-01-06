@@ -6,14 +6,16 @@ import Img from 'gatsby-image';
 import {
 	Title,
 	Layout,
-	Text,
 	Section,
 	HTMLContent,
 	Meta,
 	Box,
 	Heading3,
 	Link,
+	Tags,
+	Tag,
 } from '../components';
+import SocialBar from '../components/SocialBar';
 import { getFluid } from '../utils/getFluid';
 
 export const BlogPostTemplate = ({
@@ -24,43 +26,55 @@ export const BlogPostTemplate = ({
 	date,
 	author,
 	featuredMedia,
+	url,
+	origin,
 }) => {
-	console.log(featuredMedia);
+	const shareImage = featuredMedia
+		? origin + featuredMedia.localFile.childImageSharp.fluid.src
+		: null;
 	return (
 		<Section>
 			<Title>{title}</Title>
 			{featuredMedia && (
-				<Img fluid={getFluid({ featured_media: featuredMedia })} />
+				<Box>
+					<Img fluid={getFluid({ featured_media: featuredMedia })} />
+				</Box>
 			)}
 			<HTMLContent content={content} />
 			<Meta>{date}</Meta>
-			<Box>
+			<Box mb={1}>
 				{categories && categories.length ? (
 					<div>
-						<Heading3>Categories</Heading3>
-						<ul className="taglist">
+						<Heading3>Kategorie</Heading3>
+						<Tags>
 							{categories.map(category => (
-								<li key={`${category.slug}cat`}>
+								<Tag key={`${category.slug}`}>
 									<Link to={`/categories/${category.slug}/`}>
 										{category.name}
 									</Link>
-								</li>
+								</Tag>
 							))}
-						</ul>
+						</Tags>
 					</div>
 				) : null}
 				{tags && tags.length ? (
 					<div>
-						<Heading3>Tags</Heading3>
-						<ul>
+						<Heading3>Tagy</Heading3>
+						<Tags>
 							{tags.map(tag => (
-								<li key={`${tag.slug}tag`}>
-									<Link to={`/tags/${tag.slug}/`}>{tag.name}</Link>
-								</li>
+								<Tag key={`${tag.slug}tag`}>
+									<Link disableUnderline to={`/tags/${tag.slug}/`}>
+										{tag.name}
+									</Link>
+								</Tag>
 							))}
-						</ul>
+						</Tags>
 					</div>
 				) : null}
+			</Box>
+			<Box mb={1}>
+				<Heading3>Sdílení</Heading3>
+				<SocialBar image={shareImage} shareUrl={url} title={title} />
 			</Box>
 		</Section>
 	);
@@ -71,13 +85,15 @@ BlogPostTemplate.propTypes = {
 	title: PropTypes.string,
 };
 
-const BlogPost = ({ data }) => {
+const BlogPost = ({ data, location }) => {
 	const { wordpressPost: post } = data;
-
+	const url = location ? location.href : '';
 	return (
 		<Layout>
 			<Helmet title={`${post.title} | Blog`} />
 			<BlogPostTemplate
+				origin={location.origin}
+				url={url}
 				content={post.content}
 				categories={post.categories}
 				tags={post.tags}
@@ -93,6 +109,9 @@ const BlogPost = ({ data }) => {
 BlogPost.propTypes = {
 	data: PropTypes.shape({
 		markdownRemark: PropTypes.object,
+	}),
+	location: PropTypes.shape({
+		href: PropTypes.string,
 	}),
 };
 
