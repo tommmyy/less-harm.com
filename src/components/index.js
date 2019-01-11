@@ -94,7 +94,7 @@ export const Layout = ({ hero, children }) => (
 		</Box>
 	</ThemeProvider>
 );
-Layout.propTypes = { children: PropTypes.node };
+Layout.propTypes = { children: PropTypes.node, hero: PropTypes.node };
 
 export const Feed = Box;
 Feed.defaultProps = {

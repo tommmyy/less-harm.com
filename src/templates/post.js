@@ -49,7 +49,7 @@ export const BlogPostTemplate = ({
 						<Tags>
 							{categories.map(category => (
 								<Tag key={`${category.slug}`}>
-									<Link to={`/categories/${category.slug}/`}>
+									<Link disableUnderline to={`/categories/${category.slug}/`}>
 										{category.name}
 									</Link>
 								</Tag>
