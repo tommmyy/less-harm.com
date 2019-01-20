@@ -29,17 +29,12 @@ export const BlogPostTemplate = ({
 	url,
 	origin,
 }) => {
-	const shareImage = featuredMedia
-		? origin + featuredMedia.localFile.childImageSharp.fluid.src
-		: null;
+	const image = getFluid({ featured_media: featuredMedia });
+
 	return (
 		<Section>
 			<Title>{title}</Title>
-			{featuredMedia && (
-				<Box>
-					<Img fluid={getFluid({ featured_media: featuredMedia })} />
-				</Box>
-			)}
+			{featuredMedia && <Box>{image && <Img fluid={image} />}</Box>}
 			<HTMLContent content={content} />
 			<Meta>{date}</Meta>
 			<Box mb={1}>
@@ -74,7 +69,7 @@ export const BlogPostTemplate = ({
 			</Box>
 			<Box mb={1}>
 				<Heading3>Sdílení</Heading3>
-				<SocialBar image={shareImage} shareUrl={url} title={title} />
+				<SocialBar image={image} shareUrl={url} title={title} />
 			</Box>
 		</Section>
 	);

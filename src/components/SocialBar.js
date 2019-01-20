@@ -98,7 +98,7 @@ const SocialBar = ({ title, shareUrl, image }) => {
 			<IconWrapper>
 				<PinterestShareButton
 					url={shareUrl}
-					media={image}
+					media={image && image.src ? image.src : null}
 					windowWidth={1000}
 					windowHeight={730}
 				>
@@ -164,7 +164,7 @@ const SocialBar = ({ title, shareUrl, image }) => {
 	);
 };
 SocialBar.propTypes = {
-	image: PropTypes.string.isRequired,
+	image: PropTypes.object,
 	shareUrl: PropTypes.string.isRequired,
 	title: PropTypes.node.isRequired,
 };

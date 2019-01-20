@@ -57,7 +57,7 @@ export default class IndexPage extends React.Component {
 							<Link to={post.slug}>{post.title}</Link>
 						</Heading>
 						<Meta>{post.date}</Meta>
-						{post.featured_media && (
+						{getFluid(post) && (
 							<Link to={post.slug}>
 								<Img fluid={getFluid(post)} />
 							</Link>
